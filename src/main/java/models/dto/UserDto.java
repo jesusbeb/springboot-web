@@ -3,10 +3,11 @@ package models.dto;
 import models.User;
 
 public class UserDto {
-
+    // Atributos
     private String title;
     private User user;
     
+    // Getters ^Setters
     
     public String getTitle() {
         return title;
