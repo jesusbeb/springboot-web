@@ -14,6 +14,10 @@
         <!-- Se cargan los atributos que estan en el objeto User desde el controlador -->
         <li th:text="${user.name}"></li>
         <li th:text="${user.lastname}"></li>
+        <!-- Si email existe se muestra, si no se oculta el campo -->
+        <li th:if="${ user.email}" th:text="${user.email}"></li>
+        <!-- Ahora si email no existe se muestra "Sin email" -->
+        <li th:if="${ user.email == null }" th:text="${'Sin email'}"></li>
     </ul>
 </body>
 </html>
