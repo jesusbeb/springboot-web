@@ -1,6 +1,7 @@
 package com.jesusbeb.springboot.webapp.springboot_web.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,12 @@ public class UserController {
     // ModelMap de Spring para pasar datos a la Vista, implemente de Map
     @GetMapping("/list")
     public String list(ModelMap model){
-        List<User> users = new ArrayList<>();
-
+        List<User> users = Arrays.asList(
+            new User("User4", "lastname4"),
+            new User("user5", "lastname5", "user5@email.com"),
+            new User("user6", "lastname6", "user6@mail.com"),
+            new User("user7", "lastname7"));
+            
         model.addAttribute("users", users);
         model.addAttribute("title", "Lista de usuarios");
         return "list";

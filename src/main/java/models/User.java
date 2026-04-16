@@ -6,10 +6,19 @@ public class User {
     private String lastname;
     private String email;
 
-    // Constructor
+    // Constructores
+
+    public User(String name, String lastname, String email) {
+        this(name, lastname); // Esto llama al constructor que recibe los dos parametros
+        this.email = email;
+    }
+
     public User(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
+    }
+
+    public User() {
     }
 
     // Getters & Setters

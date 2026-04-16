@@ -8,7 +8,30 @@
 <body>
     <h1 th:text="${title}"></h1>
 
-    <div th:if="${users.size() == 0}">No tiene elementos usuarios</div>
+    <div th:if="${ users.isEmpty() }" th:text="${'No tiene elementos usuarios'}"></div>
+
+    <!-- Tabla para mostrar la lista de usuarios -->
+    <table>
+        <!-- Titulo de columnas -->
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>lastname</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <!-- Filas de las columnas -->
+        <tbody>
+            <!-- each iterara cada elemento de la lista users usando la variable "u" y obtendra los atributos para mostrarlos -->
+            <tr th:each="u:${users}">
+                <td th:text="${u.name}"></td>
+                <td th:text="${u.lastname}"></td>
+                <!-- Si email existe se muestra. Si no existe se muestra n/a -->
+                <td th:if="${u.email}" th:text="${u.email}"></td>
+                <td th:if="${u.email == null}">n/a</td>
+            </tr>
+        </tbody>
+    </table>
     
 </body>
 </html>
