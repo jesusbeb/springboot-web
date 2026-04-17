@@ -11,7 +11,8 @@
     <div th:if="${ users.isEmpty() }" th:text="${'No tiene elementos usuarios'}"></div>
 
     <!-- Tabla para mostrar la lista de usuarios -->
-    <table>
+    <!-- Si la lista de usuarios no esta vacia se muestra la tabla -->
+    <table th:if="${ !users.isEmpty() }">
         <!-- Titulo de columnas -->
         <thead>
             <tr>
