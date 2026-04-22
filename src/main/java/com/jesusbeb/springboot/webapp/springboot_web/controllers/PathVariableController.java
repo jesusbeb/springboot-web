@@ -1,6 +1,7 @@
 package com.jesusbeb.springboot.webapp.springboot_web.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -26,10 +27,19 @@ public class PathVariableController {
     private String message;
 
     @Value("${config.listOfValues}")
-    private String[] listOfValues;
+    private List<String> listOfValues;
 
     @Value("${config.code}")
     private Integer code;
+
+    // Lenguaje de expresiones de Spring (SpEL) para manipular el valor de la propiedad antes de inyectarlo. #{${}} para acceder a la propiedad.
+    // @Value("#{ '${config.listOfValues}'.toUpperCase() }") inyecta el valor de la propiedad "config.listOfValues" del application.properties, lo convierte a mayúsculas y lo divide en una lista usando la coma como separador
+    @Value("#{ '${config.listOfValues}'.toUpperCase().split(',')}" )
+    private List<String> valueList;
+
+    // @Value("#{ '${config.listOfValues}'.toUpperCase() }") inyecta el valor de la propiedad "config.listOfValues" del application.properties, lo convierte a mayúsculas y lo asigna a una variable String
+    @Value("#{ '${config.listOfValues}'.toUpperCase()}" )
+    private String valueString;
 
 
     // http://localhost:8080/api/var/baz/cualquier mensaje
@@ -69,6 +79,8 @@ public class PathVariableController {
         json.put("username", username);
         json.put("message", message);
         json.put("listOfValues", listOfValues);
+        json.put("valueList", valueList);
+        json.put("valueString", valueString);
         json.put("code", code);
         json.put("message2", message2);
         
