@@ -41,6 +41,15 @@ public class PathVariableController {
     @Value("#{ '${config.listOfValues}'.toUpperCase()}" )
     private String valueString;
 
+    @Value("#{${config.valuesMap}}")
+    private Map<String, Object> valuesMap;
+
+    @Value("#{${config.valuesMap}.product}")
+    private String product;
+
+    @Value("#{${config.valuesMap}.price}")
+    private Long price;
+
 
     // http://localhost:8080/api/var/baz/cualquier mensaje
     @GetMapping("/baz/{message}")
@@ -75,6 +84,7 @@ public class PathVariableController {
         // @Value(${config.message2}) inyecta el valor de la propiedad "config.message2" del application.properties
         public Map<String, Object> values(@Value("${config.message2}") String message2) {
 
+        // Crear un mapa para almacenar los valores a retornar en formato JSON
         Map<String, Object> json = new HashMap<>();
         json.put("username", username);
         json.put("message", message);
@@ -83,6 +93,9 @@ public class PathVariableController {
         json.put("valueString", valueString);
         json.put("code", code);
         json.put("message2", message2);
+        json.put("valuesMap", valuesMap);
+        json.put("product", product);
+        json.put("price", price);
         
         return json;
 
