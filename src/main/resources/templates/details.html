@@ -19,5 +19,13 @@
         <!-- Ahora si email no existe se muestra "Sin email" -->
         <li th:if="${ user.email == null }" th:text="${'Sin email'}"></li>
     </ul>
+    
+    <a th:href="@{/list}">Ver listado</a><br>
+    <a th:href="@{ '/api/params/foo?message=' + ${title} }">Ver mensaje</a><br> <!-- Se puede concatenar el valor del atributo title con el string del mensaje -->
+    <a th:href="@{/api/params/foo?message=Hola que tal 2}">Ver mensaje2</a><br> </body> <!-- Se pueden pasar parametros por query string con el formato ?param=value -->    
+    <a th:href="@{/api/params/foo(message='Hola que tal 3')}">Ver mensaje3</a><br> <!-- Otra forma de pasar parametros por query string con el formato (param=value) -->
+    <a th:href="@{/api/params/bar(text='Hola que tal bar 4', code=12345)}">Ver mensaje bar (2 parametros)</a><br> <!-- Se pueden pasar varios parametros por query string con el formato (param=value) separados por comas -->  
+    <a th:href="@{ '/api/var/baz/' + ${title} }">Ver mensaje var path variable </a><br> <!-- Se pueden pasar parametros por path variable con el formato /path/{variable} concatenando el valor del atributo title con el string del path -->   
+    <a th:href="@{ /api/var/baz/Hola que tal bar 5 }">Ver mensaje var path variable 2</a> <!-- Se pueden pasar parametros por path variable con el formato /path/{variable} sin concatenar el valor del atributo title con el string del path -->   
 </body>
 </html>
